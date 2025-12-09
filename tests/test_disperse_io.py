@@ -18,7 +18,6 @@ def test_write_tracers_and_load_polyline(tmp_path):
     out = tmp_path / "tracers.txt"
     write_tracers_ascii(out, coords)
 
-    # The same function can be used with load_polyline_vertices for this simple format
     loaded = load_polyline_vertices(out)
     assert loaded.shape == (2, 3)
     assert np.allclose(loaded, coords)
@@ -47,7 +46,5 @@ def test_build_disperse_command_basic():
     assert "-3D" in cmd
     assert "-nsig" in cmd
     assert "5.00" in cmd
-    # Mirror boundary flag
     assert "-b" in cmd and "m" in cmd
-    # Output prefix
     assert "-o" in cmd and "skeleton" in cmd

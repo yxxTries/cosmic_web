@@ -1,12 +1,13 @@
 """
 Cosmic web reconstruction tools.
 
-Iteration 4:
+Iteration 5:
 - Cosmology definition.
 - Coordinate transforms (RA, Dec, z) -> 3D comoving Cartesian coordinates.
 - Geometry utilities for filament spines (segments and polylines).
 - Filament abstraction to project galaxies onto a filament spine.
 - DISPERSE I/O helpers to write tracer catalogs and read simple polyline skeletons.
+- High-level mapping utilities to project galaxies (RA, Dec, z or XYZ) onto a filament.
 """
 
 from .cosmology import COSMO, comoving_distance_mpc
@@ -24,6 +25,11 @@ from .disperse import (
     filament_from_polyline_file,
     build_disperse_command,
 )
+from .mapping import (
+    GalaxyFilamentMapping,
+    map_cartesian_to_filament,
+    map_radec_z_to_filament,
+)
 
 __all__ = [
     "COSMO",
@@ -39,4 +45,7 @@ __all__ = [
     "load_polyline_vertices",
     "filament_from_polyline_file",
     "build_disperse_command",
+    "GalaxyFilamentMapping",
+    "map_cartesian_to_filament",
+    "map_radec_z_to_filament",
 ]

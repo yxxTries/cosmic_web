@@ -30,7 +30,6 @@ def write_tracers_ascii(path: str | Path, coords: Iterable[Iterable[float]]) -> 
     if path.parent and not path.parent.exists():
         path.parent.mkdir(parents=True, exist_ok=True)
 
-    # Simple ASCII with space-separated columns
     np.savetxt(path, arr, fmt="%.8f")
 
 
@@ -40,10 +39,6 @@ def load_polyline_vertices(path: str | Path) -> np.ndarray:
 
     Expected format: one vertex per line with 3 columns:
         x  y  z
-
-    This is intentionally minimal and can be used with:
-    - Custom skeleton exports, or
-    - `skelconv` output converted to this format.
 
     Parameters
     ----------
