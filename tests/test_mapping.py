@@ -47,7 +47,7 @@ def test_map_radec_z_to_filament_on_axis():
     vertices = np.array(
         [
             [0.0, 0.0, 0.0],
-            [100.0, 0.0, 0.0],
+            [1000.0, 0.0, 0.0],
         ]
     )
     filament = Filament.from_vertices(vertices)
@@ -63,9 +63,10 @@ def test_map_radec_z_to_filament_on_axis():
         filament=filament,
     )
 
-    # On-axis: distance to filament should be ~0, s_along ~ comoving distance (clamped by filament length)
+    # Distances should be very small (on-axis)
     assert np.all(mapping.distances >= 0.0)
     assert np.all(mapping.distances < 1e-6)
 
     # s_along should be close to comoving distance but cannot exceed filament length
     assert np.all(mapping.s_along <= filament.length + 1e-6)
+    assert np.allclose(mapping.s_along, d_c, rtol=1e-6, atol=1e-4)
