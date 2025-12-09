@@ -106,7 +106,6 @@ def project_point_onto_segment(
     ab2 = float(np.dot(ab, ab))
 
     if ab2 == 0.0:
-        # Degenerate segment: treat as a single point.
         closest = a
         dist = float(np.linalg.norm(p - closest))
         return dist, closest, 0.0
